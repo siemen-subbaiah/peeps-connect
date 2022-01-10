@@ -22,7 +22,9 @@ const AuthState = ({ children }) => {
 
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
-    theme === 'light' ? setStoreLocal('translate-x-[100%]') : setStoreLocal('');
+    theme === 'light'
+      ? setStoreLocal('translate-x-[100%]')
+      : setStoreLocal('translate-x-0');
   };
 
   const router = useRouter();
