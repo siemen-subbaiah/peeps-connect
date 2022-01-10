@@ -14,9 +14,15 @@ const AuthState = ({ children }) => {
       ? localStorage.getItem('theme')
       : 'dark'
   );
+  const [storeLocal, setStoreLocal] = useState(
+    typeof window !== 'undefined' && localStorage.getItem('toggle')
+      ? localStorage.getItem('toggle')
+      : ''
+  );
 
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
+    theme === 'light' ? setStoreLocal('translate-x-[100%]') : setStoreLocal('');
   };
 
   const router = useRouter();
@@ -90,7 +96,16 @@ const AuthState = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, error, register, login, logout, theme, toggleTheme }}
+      value={{
+        user,
+        error,
+        register,
+        login,
+        logout,
+        theme,
+        toggleTheme,
+        storeLocal,
+      }}
     >
       {children}
     </AuthContext.Provider>

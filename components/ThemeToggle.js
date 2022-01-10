@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthState';
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useContext(AuthContext);
+  const { theme, toggleTheme, storeLocal } = useContext(AuthContext);
 
   return (
     <div className='flex items-center md:justify-center w-full'>
@@ -18,9 +18,7 @@ const ThemeToggle = () => {
             <div
               className={`absolute left-1 top-1 ${
                 theme === 'light' ? 'bg-black' : 'bg-white'
-              } w-6 h-6 rounded-full transition ${
-                theme === 'light' && 'translate-x-[100%]'
-              }`}
+              } w-6 h-6 rounded-full transition ${storeLocal}`}
             ></div>
           </div>
         </div>
