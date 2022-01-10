@@ -51,7 +51,7 @@ const Post = ({ token, comment, setComments, comments }) => {
   };
 
   return (
-    <section className='bg-white p-5 my-8 rounded-md border-2'>
+    <section className='bg-white dark:bg-gray-800 p-5 my-8 rounded-md dark:border-none border-2'>
       <Link href={`/${comment?.user_name}`}>
         <a>
           <div className='flex items-center gap-5'>
@@ -60,7 +60,7 @@ const Post = ({ token, comment, setComments, comments }) => {
           </div>
         </a>
       </Link>
-      <hr className='my-4' />
+      <hr className='my-4 dark:border-gray-600' />
       <div className='flex md:items-center justify-between md:flex-row flex-col'>
         {toggleEdit ? (
           <div>

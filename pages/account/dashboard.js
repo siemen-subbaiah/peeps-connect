@@ -81,7 +81,7 @@ const DashboardPage = ({ token, myData }) => {
                   <input
                     type='text'
                     name='name'
-                    className='p-2 my-3 border border-primary outline-none rounded w-full'
+                    className='p-2 my-3 border border-primary outline-none rounded w-full dark:text-black'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
@@ -89,7 +89,7 @@ const DashboardPage = ({ token, myData }) => {
               ) : (
                 <div className='flex items-center gap-3 my-3'>
                   <MdOutlineAccountCircle className='h-8 w-8' />
-                  <h1 className='text-xl'>{name}</h1>
+                  <h1 className='text-xl dark:text-gray-300'>{name}</h1>
                 </div>
               )}
               <div className='flex'>
@@ -99,7 +99,7 @@ const DashboardPage = ({ token, myData }) => {
                       <input
                         type='email'
                         name='email'
-                        className='p-2 my-3 border border-primary outline-none rounded w-full'
+                        className='p-2 my-3 border border-primary outline-none rounded w-full dark:text-black'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
@@ -121,7 +121,9 @@ const DashboardPage = ({ token, myData }) => {
                   ) : (
                     <div className='flex items-center gap-3'>
                       <FiMail className='h-8 w-8' />
-                      <h1 className='text-sm md:text-xl'>{email}</h1>
+                      <h1 className='text-sm md:text-xl dark:text-gray-300'>
+                        {email}
+                      </h1>
                     </div>
                   )}
                 </div>

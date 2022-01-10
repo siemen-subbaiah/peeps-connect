@@ -18,7 +18,7 @@ const AccountAvatar = () => {
         />
       </div>
       {toggle && (
-        <div className='bg-white shadow-md text-black absolute top-[4.3rem] pr-20 pl-4 rounded-md right-52'>
+        <div className='bg-white shadow-md text-black absolute top-[4.3rem] pr-20 pl-4 rounded-md right-96'>
           <ul>
             <li className='my-3' onClick={() => setToggle(false)}>
               <Link href='/account/dashboard'>Profile</Link>

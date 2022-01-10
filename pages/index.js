@@ -14,7 +14,7 @@ const HomePage = ({ token, posts: storedPosts }) => {
       <Seo title='Home' />
       <div className='container mx-auto px-5 md:px-20'>
         {token === '' ? (
-          <p className='text-lg my-8 text-gray-500'>
+          <p className='text-lg my-8 dark:text-gray-300 text-gray-500'>
             Login/Signup to add a post
           </p>
         ) : (

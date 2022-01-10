@@ -57,7 +57,7 @@ const RegisterPage = () => {
             <button className='bg-primary text-white px-5 py-2 rounded-md w-full'>
               Signup
             </button>
-            <p className='mt-5 text-gray-500'>
+            <p className='mt-5 dark:text-gray-400 text-gray-500'>
               Have an account?{' '}
               <Link href='/account/login'>
                 <a className='underline'>Login</a>

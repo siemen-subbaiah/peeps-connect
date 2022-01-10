@@ -30,7 +30,9 @@ const PostDetailsPage = ({ token, postDetails, myData }) => {
         />
         <h3 className='text-2xl'>Comments</h3>
         {token === '' ? (
-          <p className='text-lg my-8 text-gray-500'>Login to comment!</p>
+          <p className='text-lg my-8 dark:text-gray-300 text-gray-500'>
+            Login to comment!
+          </p>
         ) : (
           <AddComment
             comments={comments}

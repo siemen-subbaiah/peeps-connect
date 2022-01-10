@@ -1,13 +1,23 @@
 import { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { NEXT_URL } from '../config';
-import cookie from 'cookie';
 
 export const AuthContext = createContext();
 
 const AuthState = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+
+  // For dark mode!
+  const [theme, setTheme] = useState(
+    typeof window !== 'undefined' && localStorage.getItem('theme')
+      ? localStorage.getItem('theme')
+      : 'dark'
+  );
+
+  const toggleTheme = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
   const router = useRouter();
 
@@ -79,7 +89,9 @@ const AuthState = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, error, register, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, error, register, login, logout, theme, toggleTheme }}
+    >
       {children}
     </AuthContext.Provider>
   );

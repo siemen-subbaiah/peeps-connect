@@ -41,7 +41,7 @@ const AddComment = ({ token, comments, setComments, postID }) => {
       <textarea
         name='content'
         placeholder='Enter your comment here'
-        className='border-2 p-3 h-24 outline-none w-full rounded-md'
+        className='dark:border-none border-2 p-3 h-24 outline-none w-full rounded-md dark:bg-gray-800'
         value={commentContent}
         onChange={(e) => setCommentContent(e.target.value)}
       />

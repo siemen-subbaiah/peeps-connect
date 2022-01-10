@@ -3,11 +3,12 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import Link from 'next/link';
 import { AuthContext } from '../context/AuthState';
 import AccountAvatar from './AccountAvatar';
+import ThemeToggle from './ThemeToggle';
 
 const NavBar = () => {
   const [toggle, setToggle] = useState(false);
 
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, theme, toggleTheme } = useContext(AuthContext);
 
   return (
     <nav className='md:px-20 p-5 md:flex items-center justify-between bg-primary text-white mb-5'>
@@ -61,6 +62,9 @@ const NavBar = () => {
             </button>
           </>
         )}
+        <li className='my-5 md:my-0 cursor-pointer'>
+          <ThemeToggle />
+        </li>
         <li className='my-5 md:my-0 ' onClick={() => setToggle(false)}>
           <Link href='/about'>About</Link>
         </li>

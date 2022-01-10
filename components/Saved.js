@@ -4,7 +4,7 @@ import Avatar from './Avatar';
 
 const Post = ({ saved }) => {
   return (
-    <section className='bg-white shadow-2xl p-5 my-12 rounded-md border'>
+    <section className='bg-white dark:bg-gray-800 shadow-2xl p-5 my-12 rounded-md dark:border-none border'>
       <Link href={`/${saved?.user_name}`}>
         <a>
           <div className='flex items-center gap-5'>
@@ -13,7 +13,7 @@ const Post = ({ saved }) => {
           </div>
         </a>
       </Link>
-      <hr className='my-4' />
+      <hr className='my-4 dark:border-gray-600' />
       <Link href={`/post/${saved.post_id}`}>
         <a>
           <p className='leading-relaxed'>{saved.saved_content}</p>

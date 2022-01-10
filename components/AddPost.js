@@ -37,7 +37,7 @@ const AddPost = ({ token, posts, setPosts }) => {
       <textarea
         name='content'
         placeholder='What’s happening?'
-        className='border-2 p-3 h-36 outline-none w-full rounded-md'
+        className='dark:border-none border-2 p-3 h-36 outline-none w-full rounded-md dark:bg-gray-800'
         value={postContent}
         onChange={(e) => setPostContent(e.target.value)}
       />

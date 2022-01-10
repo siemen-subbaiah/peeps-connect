@@ -52,7 +52,7 @@ const LoginPage = () => {
             <button className='bg-primary text-white px-5 py-2 rounded-md w-full'>
               Login
             </button>
-            <p className='mt-5 text-gray-500'>
+            <p className='mt-5 dark:text-gray-300 text-gray-500'>
               Don't have an account?{' '}
               <Link href='/account/signup'>
                 <a className='underline'>Signup</a>

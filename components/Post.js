@@ -109,7 +109,7 @@ const Post = ({
   };
 
   return (
-    <section className='bg-white shadow-2xl p-5 my-12 rounded-md border'>
+    <section className='bg-white dark:bg-gray-800 shadow-2xl p-5 my-12 rounded-md dark:border-none border'>
       <Link href={`/${username ? username : post?.user?.username}`}>
         <a>
           {noShow ? (
@@ -125,7 +125,7 @@ const Post = ({
           )}
         </a>
       </Link>
-      <hr className='my-4' />
+      <hr className='my-4 dark:border-gray-600' />
       <div className='flex md:items-center justify-between md:flex-row flex-col'>
         {toggleEdit ? (
           <div>
@@ -168,7 +168,7 @@ const Post = ({
           </div>
         )}
       </div>
-      <hr className='my-4' />
+      <hr className='my-4  dark:border-gray-600' />
       {showLikes && (
         <div className='gap-3 flex justify-end items-center'>
           {token && (

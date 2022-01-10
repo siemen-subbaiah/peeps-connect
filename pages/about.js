@@ -7,7 +7,7 @@ const AboutPage = () => {
   return (
     <>
       <Seo title='About' />
-      <div className='my-5 container mx-auto md:px-20 px-5'>
+      <div className='my-5 container mx-auto md:px-20 px-5 '>
         <h1 className='md:text-3xl text-4xl'>About</h1>
 
         <div className='grid md:my-20 my-10 md:grid-cols-2  items-center gap-10'>
