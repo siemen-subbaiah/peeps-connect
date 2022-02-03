@@ -1,31 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthState';
+import { BsFillSunFill, BsFillMoonStarsFill } from 'react-icons/bs';
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme, storeLocal } = useContext(AuthContext);
+  const { theme, toggleTheme } = useContext(AuthContext);
+
+  const [icon, setIcon] = useState(false);
+
+  useEffect(() => {
+    theme === 'light' ? setIcon(true) : setIcon(false);
+  }, [theme]);
 
   return (
     <div className='flex items-center md:justify-center w-full'>
-      <label htmlFor='toggleB' className='flex items-center cursor-pointer'>
-        <div className='relative'>
-          <input type='checkbox' id='toggleB' className='sr-only' />
-          <div
-            className={`block ${
-              theme === 'light' ? 'bg-[#4f2475]' : 'bg-gray-800'
-            } w-14 h-8 rounded-full`}
-            onClick={toggleTheme}
-          >
-            <div
-              className={`absolute left-1 top-1 ${
-                theme === 'light' ? 'bg-black' : 'bg-white'
-              } w-6 h-6 rounded-full transition ${storeLocal}`}
-            ></div>
-          </div>
+      {icon ? (
+        <div className='l-light'>
+          <BsFillMoonStarsFill className='h-7 w-7' onClick={toggleTheme} />
         </div>
-        <div className='ml-3 text-gray-200 font-medium'>
-          {theme === 'light' ? 'Dark' : 'Light'}
+      ) : (
+        <div className='l-dark'>
+          <BsFillSunFill className='h-7 w-7' onClick={toggleTheme} />
         </div>
-      </label>
+      )}
     </div>
   );
 };

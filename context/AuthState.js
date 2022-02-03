@@ -14,17 +14,9 @@ const AuthState = ({ children }) => {
       ? localStorage.getItem('theme')
       : 'dark'
   );
-  const [storeLocal, setStoreLocal] = useState(
-    typeof window !== 'undefined' && localStorage.getItem('toggle')
-      ? localStorage.getItem('toggle')
-      : ''
-  );
 
   const toggleTheme = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
-    theme === 'light'
-      ? setStoreLocal('translate-x-[100%]')
-      : setStoreLocal('translate-x-0');
   };
 
   const router = useRouter();
@@ -106,7 +98,6 @@ const AuthState = ({ children }) => {
         logout,
         theme,
         toggleTheme,
-        storeLocal,
       }}
     >
       {children}

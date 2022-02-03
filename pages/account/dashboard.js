@@ -27,12 +27,16 @@ const DashboardPage = ({ token, myData }) => {
   const [toggleEdit, setToggleEdit] = useState(false);
 
   // SAVE USERNAME AND EMAIL IN LOCAL STORAGE ONCE THE USER IS LOGGED IN!
-  const localName = JSON.parse(localStorage.getItem('accdet'))?.username
-    ? JSON.parse(localStorage.getItem('accdet'))?.username
-    : user?.username;
-  const localEmail = JSON.parse(localStorage.getItem('accdet'))?.email
-    ? JSON.parse(localStorage.getItem('accdet'))?.email
-    : user?.email;
+  const localName =
+    typeof window !== 'undefined' &&
+    JSON.parse(localStorage.getItem('accdet'))?.username
+      ? JSON.parse(localStorage.getItem('accdet'))?.username
+      : user?.username;
+  const localEmail =
+    typeof window !== 'undefined' &&
+    JSON.parse(localStorage.getItem('accdet'))?.email
+      ? JSON.parse(localStorage.getItem('accdet'))?.email
+      : user?.email;
 
   const [name, setName] = useState(localName);
   const [email, setEmail] = useState(localEmail);

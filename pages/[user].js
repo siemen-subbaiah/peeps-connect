@@ -43,7 +43,7 @@ const AccountDetailsPage = ({ userDetails }) => {
           <div className='bg-primary py-3 px-9 rounded-lg  text-white w-min'>
             Posts
           </div>
-          {userDetails.posts.map((post) => (
+          {userDetails?.posts?.map((post) => (
             <Post
               key={post.id}
               post={post}
@@ -51,7 +51,7 @@ const AccountDetailsPage = ({ userDetails }) => {
               username={userDetails?.username}
             />
           ))}
-          {userDetails.posts.length === 0 && (
+          {userDetails?.posts?.length === 0 && (
             <p className='my-10 text-center text-3xl'>No posts yet</p>
           )}
         </section>

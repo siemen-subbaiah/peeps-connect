@@ -132,7 +132,7 @@ const Post = ({
             <textarea
               type='text'
               name='post'
-              className='border p-3 h-24 outline-none md:w-[400%] w-full rounded-md'
+              className='border p-3 h-24 outline-none md:w-[400%] w-full rounded-md dark:text-black'
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
             />
