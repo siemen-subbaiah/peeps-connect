@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Avatar from './Avatar';
+import moment from 'moment';
 
 const Post = ({ saved }) => {
   return (
@@ -11,6 +12,9 @@ const Post = ({ saved }) => {
             <Avatar letter={saved?.user_name[0].toUpperCase()} />
             <p>{saved?.user_name}</p>
           </div>
+          <p className='text-xs text-gray-300 my-5'>
+            {moment(saved.updated_at).fromNow()}
+          </p>
         </a>
       </Link>
       <hr className='my-4 dark:border-gray-600' />

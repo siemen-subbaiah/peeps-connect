@@ -4,6 +4,9 @@ import Avatar from './Avatar';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthState';
 import { API_URL } from '../config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import moment from 'moment';
 
 const Post = ({ token, comment, setComments, comments }) => {
   const { user } = useContext(AuthContext);
@@ -41,23 +44,31 @@ const Post = ({ token, comment, setComments, comments }) => {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/comments/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setComments(comments.filter((comment) => comment.id !== id));
+    const prompt = window.confirm('Are you sure you want to delete this?');
+
+    if (prompt) {
+      await fetch(`${API_URL}/comments/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setComments(comments.filter((comment) => comment.id !== id));
+      toast.success('Comment deleted!');
+    }
   };
 
   return (
     <section className='bg-white dark:bg-gray-800 p-5 my-8 rounded-md dark:border-none border-2'>
-      <Link href={`/${comment?.user_name}`}>
+      <Link href={`/${comment?.user?.username}`}>
         <a>
           <div className='flex items-center gap-5'>
             <Avatar letter={comment?.user_name[0].toUpperCase()} />
-            <p>{comment?.user_name}</p>
+            <p>{comment?.user?.username}</p>
           </div>
+          <p className='text-xs text-gray-300 my-5'>
+            {moment(comment?.updated_at).fromNow()}
+          </p>
         </a>
       </Link>
       <hr className='my-4 dark:border-gray-600' />
@@ -67,7 +78,7 @@ const Post = ({ token, comment, setComments, comments }) => {
             <textarea
               type='text'
               name='post'
-              className='border p-3 h-24 outline-none md:w-[400%] w-full rounded-md'
+              className='border p-3 h-24 outline-none md:w-[400%] w-full rounded-md text-black'
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
             />
@@ -99,6 +110,7 @@ const Post = ({ token, comment, setComments, comments }) => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </section>
   );
 };

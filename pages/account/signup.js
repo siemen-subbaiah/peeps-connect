@@ -31,7 +31,7 @@ const RegisterPage = () => {
                 placeholder='User name'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className='border border-primary p-3 w-full rounded-md outline-none'
+                className='border border-primary p-3 w-full rounded-md outline-none text-black'
               />
             </div>
             <div className='my-4'>
@@ -41,7 +41,7 @@ const RegisterPage = () => {
                 placeholder='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className='border border-primary p-3 w-full rounded-md outline-none'
+                className='border border-primary p-3 w-full rounded-md outline-none text-black'
               />
             </div>
             <div className='my-4'>
@@ -51,7 +51,7 @@ const RegisterPage = () => {
                 placeholder='Password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className='border border-primary p-3 w-full rounded-md outline-none'
+                className='border border-primary p-3 w-full rounded-md outline-none text-black'
               />
             </div>
             <button className='bg-primary text-white px-5 py-2 rounded-md w-full'>

@@ -23,7 +23,8 @@ const AddComment = ({ token, comments, setComments, postID }) => {
           post: {
             id: postID,
           },
-          user: { id: user.id },
+          // user: { id: user.id },
+          user: user,
           user_name: user.username,
         }),
       });

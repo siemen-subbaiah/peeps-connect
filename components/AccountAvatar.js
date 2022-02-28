@@ -23,7 +23,14 @@ const AccountAvatar = () => {
             <li className='my-3' onClick={() => setToggle(false)}>
               <Link href='/account/dashboard'>Profile</Link>
             </li>
-            <li className='my-3' onClick={logout}>
+            <li
+              className='my-3'
+              onClick={() => {
+                typeof window !== 'undefined' &&
+                  localStorage.removeItem('accdet');
+                logout();
+              }}
+            >
               <a href='#'>Logout</a>
             </li>
           </ul>

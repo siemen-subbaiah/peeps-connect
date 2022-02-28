@@ -8,6 +8,7 @@ import { API_URL } from '../config';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthState';
 import { useRouter } from 'next/router';
+import moment from 'moment';
 
 const Post = ({
   post,
@@ -27,14 +28,25 @@ const Post = ({
   const [toggleEdit, setToggleEdit] = useState(false);
   const [editContent, setEditContent] = useState('');
 
+  const [savedIcon, setSavedIcon] = useState(
+    savedCheck?.length > 0 ? 'BsFillBookmarkFill' : 'BsBookmark'
+  );
+
+  console.log(savedCheck);
+
   const handleDelete = async (id) => {
-    await fetch(`${API_URL}/posts/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setPosts(posts.filter((post) => post.id !== id));
+    const prompt = window.confirm('Are you sure you want to delete this?');
+
+    if (prompt) {
+      await fetch(`${API_URL}/posts/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setPosts(posts.filter((post) => post.id !== id));
+      toast.success('Comment deleted!');
+    }
   };
 
   const handleEditBox = async (id) => {
@@ -95,17 +107,28 @@ const Post = ({
       }),
     });
     const data = await res.json();
-    router.push('/account/dashboard');
+
+    if (res.ok) {
+      savedIcon === 'BsBookmark'
+        ? setSavedIcon('BsFillBookmarkFill')
+        : setSavedIcon('BsBookmark');
+      toast.success('Post saved!');
+    }
   };
 
   const handleSavedDelete = async (id) => {
-    await fetch(`${API_URL}/saveds/${id}`, {
+    const res = await fetch(`${API_URL}/saveds/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    router.push('/account/dashboard');
+    if (res.ok) {
+      savedIcon === 'BsFillBookmarkFill'
+        ? setSavedIcon('BsBookmark')
+        : setSavedIcon('BsFillBookmarkFill');
+      toast.success('Post unsaved!');
+    }
   };
 
   return (
@@ -113,15 +136,25 @@ const Post = ({
       <Link href={`/${username ? username : post?.user?.username}`}>
         <a>
           {noShow ? (
-            <div className='flex items-center gap-5'>
-              <Avatar letter={username ? username[0].toUpperCase() : 'P'} />
-              <p>{username}</p>
-            </div>
+            <>
+              <div className='flex items-center gap-5'>
+                <Avatar letter={username ? username[0].toUpperCase() : 'P'} />
+                <p>{username}</p>
+              </div>
+              <p className='text-xs text-gray-300 my-5'>
+                {moment(post.updated_at).fromNow()}
+              </p>
+            </>
           ) : (
-            <div className='flex items-center gap-5'>
-              <Avatar letter={post?.user?.username[0].toUpperCase()} />
-              <p>{post?.user?.username}</p>
-            </div>
+            <>
+              <div className='flex items-center gap-5'>
+                <Avatar letter={post?.user?.username[0].toUpperCase()} />
+                <p>{post?.user?.username}</p>
+              </div>
+              <p className='text-xs text-gray-300 my-5'>
+                {moment(post.updated_at).fromNow()}
+              </p>
+            </>
           )}
         </a>
       </Link>
@@ -173,12 +206,12 @@ const Post = ({
         <div className='gap-3 flex justify-end items-center'>
           {token && (
             <>
-              {savedCheck.length > 0 ? (
+              {savedIcon === 'BsFillBookmarkFill' ? (
                 <>
                   <p>saved</p>
                   <BsFillBookmarkFill
                     className='h-6 w-6 cursor-pointer'
-                    onClick={() => handleSavedDelete(savedCheck[0].id)}
+                    onClick={() => handleSavedDelete(savedCheck[0]?.id)}
                   />
                 </>
               ) : (
@@ -192,6 +225,17 @@ const Post = ({
               )}
             </>
           )}
+          {/* {savedIcon === 'BsBookmark' ? (
+            <BsBookmark
+              className='h-6 w-6 cursor-pointer'
+              onClick={handleSaved}
+            />
+          ) : (
+            <BsFillBookmarkFill
+              className='h-6 w-6 cursor-pointer'
+              onClick={handleSaved}
+            />
+          )} */}
         </div>
       )}
       <ToastContainer />
