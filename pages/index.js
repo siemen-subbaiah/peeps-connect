@@ -1,4 +1,4 @@
-import React from 'react';
+import Link from 'next/link';
 import { useState } from 'react';
 import AddPost from '../components/AddPost';
 import Post from '../components/Post';
@@ -14,9 +14,16 @@ const HomePage = ({ token, posts: storedPosts }) => {
       <Seo title='Home' />
       <div className='container mx-auto px-5 md:px-20'>
         {token === '' ? (
-          <p className='text-lg my-8 dark:text-gray-300 text-gray-500'>
-            Login/Signup to add a post
-          </p>
+          <span className='text-lg my-8 dark:text-gray-300 text-gray-500'>
+            <Link href='/account/login'>
+              <a className='underline'>Login</a>
+            </Link>{' '}
+            /
+            <Link href='/account/signup'>
+              <a className='underline'>Signup</a>
+            </Link>{' '}
+            to add a post
+          </span>
         ) : (
           <AddPost token={token} posts={posts} setPosts={setPosts} />
         )}

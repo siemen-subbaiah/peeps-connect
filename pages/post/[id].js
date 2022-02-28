@@ -1,4 +1,4 @@
-import React from 'react';
+import Link from 'next/link';
 import Post from '../../components/Post';
 import Seo from '../../components/Seo';
 import { API_URL } from '../../config';
@@ -28,11 +28,18 @@ const PostDetailsPage = ({ token, postDetails, myData }) => {
           token={token}
           savedCheck={savedCheck}
         />
-        <h3 className='text-2xl'>Comments</h3>
+        <h3 className='text-2xl my-3'>Comments</h3>
         {token === '' ? (
-          <p className='text-lg my-8 dark:text-gray-300 text-gray-500'>
-            Login to comment!
-          </p>
+          <span className='text-md dark:text-gray-300 text-gray-500'>
+            <Link href='/account/login'>
+              <a className='underline'>Login</a>
+            </Link>{' '}
+            /
+            <Link href='/account/signup'>
+              <a className='underline'>Signup</a>
+            </Link>{' '}
+            to comment
+          </span>
         ) : (
           <AddComment
             comments={comments}

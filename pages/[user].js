@@ -4,6 +4,7 @@ import { AiOutlineCalendar } from 'react-icons/ai';
 import { API_URL } from '../config';
 import Post from '../components/Post';
 import Seo from '../components/Seo';
+import moment from 'moment';
 
 const AccountDetailsPage = ({ userDetails }) => {
   return (
@@ -14,7 +15,7 @@ const AccountDetailsPage = ({ userDetails }) => {
           <div className='w-[150px] h-[150px] mb-5 rounded-full bg-primary flex justify-center items-center text-5xl text-white'>
             {userDetails?.username[0].toUpperCase()}
           </div>
-          <div className='flex justify-between items-start'>
+          <div className='md:flex justify-between items-start'>
             <div>
               <div className='flex items-center gap-3 my-3'>
                 <MdOutlineAccountCircle className='h-8 w-8' />
@@ -31,9 +32,8 @@ const AccountDetailsPage = ({ userDetails }) => {
             </div>
             <div className='flex items-center gap-3 text-gray-500'>
               <AiOutlineCalendar className='h-8 w-8' />
-              <p>
-                Joined {new Date(userDetails?.created_at).toLocaleDateString()}
-                {/* use moment! */}
+              <p className='my-5 md:my-0 text-xs md:text-sm'>
+                Joined {moment(userDetails?.created_at).format('MMM YYYY')}
               </p>
             </div>
           </div>
