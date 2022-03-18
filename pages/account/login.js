@@ -28,29 +28,42 @@ const LoginPage = () => {
       <div className='container mx-auto px-5 md:px-32 my-5'>
         <div className='grid md:grid-cols-2 items-center gap-16'>
           <Image src={ill} blurDataURL={ill} alt='ill' placeholder='blur' />
-          <form onSubmit={handleSubmit}>
-            <div className='my-4'>
-              <input
-                type='email'
-                name='email'
-                placeholder='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className='border border-primary p-3 w-full rounded-md outline-none text-black'
-              />
-            </div>
-            <div className='my-4'>
-              <input
-                type='password'
-                name='password'
-                placeholder='Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className='border border-primary p-3 w-full rounded-md outline-none text-black'
-              />
-            </div>
-            <button className='bg-primary text-white px-5 py-2 rounded-md w-full'>
-              Login
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className='my-4'>
+                <input
+                  type='email'
+                  name='email'
+                  placeholder='email'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className='border border-primary p-3 w-full rounded-md outline-none text-black'
+                />
+              </div>
+              <div className='my-4'>
+                <input
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className='border border-primary p-3 w-full rounded-md outline-none text-black'
+                />
+              </div>
+              <button className='bg-primary text-white px-5 py-2 rounded-md w-full'>
+                Login
+              </button>
+            </form>
+            <button
+              className='bg-[#661EA7] text-white px-5 py-2 rounded-md w-full my-3'
+              onClick={() =>
+                login({
+                  identifier: 'johndoe@gmail.com',
+                  password: 'johndoe123',
+                })
+              }
+            >
+              Login as Guest
             </button>
             <p className='mt-5 dark:text-gray-300 text-gray-500'>
               Don't have an account?{' '}
@@ -58,7 +71,7 @@ const LoginPage = () => {
                 <a className='underline'>Signup</a>
               </Link>
             </p>
-          </form>
+          </div>
         </div>
       </div>
       <ToastContainer />
